@@ -1,0 +1,54 @@
+# Configuración de clip-ing. Sobreescribible con variables CLIP__SECCION__CLAVE (.env).
+proyectos_dir: proyectos
+
+transcripcion:
+  modelo: auto          # auto | tiny | base | small | medium | large-v3
+  dispositivo: auto     # auto | cuda | cpu
+  compute_type: auto    # auto | int8 | int8_float32 | float32  (Pascal/GTX 1060: nunca float16)
+  idioma: null          # null = autodetectar; "es" fuerza español
+  traducir_a_es: true   # si el audio no es español, traducir texto para buscar/títulos
+  beam_size: 5
+  vad: true
+
+seleccion:
+  n: 10
+  min_seg: 15
+  max_seg: 60
+  objetivo_seg: 30
+  padding_seg: 0.3
+  separacion_min_seg: 5
+  usar_ia: true
+  pesos:
+    volumen: 0.40
+    palabras: 0.35
+    escenas: 0.25
+
+claude:
+  comando: claude
+  timeout_seg: 300
+  modelo: null          # null = el modelo por defecto de tu suscripción
+
+render:
+  ancho: 1080
+  alto: 1920
+  fps: 30
+  encoder: auto         # auto | h264_nvenc | libx264
+  reencuadre: blur      # centro | blur
+  crf: 20               # libx264
+  cq: 23                # h264_nvenc
+  preset_x264: veryfast
+  preset_nvenc: p5
+  audio_bitrate: 160k
+  blur_sigma: 30
+
+subtitulos:
+  fuente: Arial Black
+  tamano: 92
+  color: "&H00FFFFFF"        # ASS: &HAABBGGRR (blanco)
+  color_resaltado: "&H0000E5FF"  # amarillo
+  color_contorno: "&H00000000"
+  contorno: 6
+  sombra: 2
+  palabras_por_linea: 3
+  mayusculas: true
+  margen_v: 520              # distancia al borde inferior (px en 1920)

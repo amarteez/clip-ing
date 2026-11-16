@@ -1,0 +1,30 @@
+# Entornos
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+build/
+dist/
+
+# Secretos
+.env
+cookies*.txt
+
+# Datos pesados (nunca al repo)
+proyectos/
+models/
+*.mp4
+*.mkv
+*.webm
+*.mov
+*.m4a
+*.wav
+*.mp3
+
+# SO / editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
