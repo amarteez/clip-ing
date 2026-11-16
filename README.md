@@ -1,5 +1,4 @@
 # clip-ing
-
 ## Qué es
 
 Motor de clipping automatizado: le das un link o un archivo de video largo y devuelve clips verticales 9:16 de 15 a 60 s, con subtítulos estilo viral (palabra resaltada) y un título sugerido para cada uno.
@@ -29,7 +28,6 @@ clip doctor
 - Si el script instaló Python o ffmpeg, puede que debas cerrar y abrir la terminal y volver a ejecutarlo.
 
 ## Primera prueba
-
 Con un video corto PROPIO de 2–5 min con voz:
 
 ```powershell
@@ -111,36 +109,3 @@ CLIP__PROYECTOS_DIR=D:/clips/proyectos
 | NVENC falla | Actualiza el driver NVIDIA o usa `CLIP__RENDER__ENCODER=libx264`. |
 | `claude` no encontrado | Usa `--sin-ia`, o instala `npm install -g @anthropic-ai/claude-code` y ejecuta `claude` para iniciar sesión. |
 | Out of memory en GPU | `CLIP__TRANSCRIPCION__MODELO=small`. |
-
-## Desarrollo
-
-Tests (no requieren GPU ni videos):
-
-```powershell
-.\.venv\Scripts\python -m pytest -q
-```
-
-Módulos en `src/clipping/`: `cli` (capa delgada) → `pipeline` (orquestación con pasos cacheados, reutilizable por una futura API FastAPI) → `descarga`, `transcripcion`, `deteccion/` (audio, escenas), `seleccion/` (tiempos, heurística, claude, buscar, títulos), `render/` (subtítulos ASS, reencuadre, ffmpeg); más `config`, `models`, `proyecto`, `hardware`, `doctor`. `revision/` (HTML) llega en la fase 3.
-
-Roadmap:
-
-1. Hecho: esqueleto.
-2. Primera corrida real en casa.
-3. Links, `buscar`, claude, revisión HTML, reencuadre con seguimiento.
-
-## Git
-
-Commits pequeños y sin secretos. `.env`, `proyectos/`, modelos y videos están en `.gitignore`.
-
-### Subir a GitHub (privado)
-
-```powershell
-gh repo create clip-ing --private --source . --push
-```
-
-O crea un repo vacío privado en github.com y:
-
-```powershell
-git remote add origin <url>
-git push -u origin main
-```
